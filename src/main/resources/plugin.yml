@@ -4,4 +4,5 @@ main: exposed.hydrogen.emotes.emotes.Emotes
 api-version: 1.18
 prefix: emotes
 authors: [ Hydrogen ]
+depend: [ Resources ]
 website: hydrogen.exposed
