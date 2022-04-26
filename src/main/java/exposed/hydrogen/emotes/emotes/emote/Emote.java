@@ -1,7 +1,7 @@
 package exposed.hydrogen.emotes.emotes.emote;
 
 import lombok.Getter;
-import team.unnamed.creative.font.Font;
+import team.unnamed.creative.font.BitMapFontProvider;
 import team.unnamed.creative.texture.Texture;
 
 import java.util.List;
@@ -10,29 +10,29 @@ import java.util.List;
  * Represents an emote.
  */
 public class Emote {
-    @Getter private Texture texture;
-    @Getter private Font font;
-    @Getter private String name = "emote";
-    @Getter private String description = "This is an emote!";
-    @Getter private String usage = ":emote:";
-    @Getter private List<String> usageAliases = List.of(":e:", ":emoet:");
+    @Getter private final Texture texture;
+    @Getter private final BitMapFontProvider font;
+    @Getter private final String description; // = "This is an emote!";
+    @Getter private final List<String> usages; // = List.of(":emote:", ":e:", ":emoet:");
 
+    private Emote() {
+        texture = null;
+        font = null;
+        description = "";
+        usages = null;
+    }
     /**
      * Constructs a new emote.
      * @param texture The texture of the emote.
      * @param font The font of the emote.
-     * @param name The name of the emote.
      * @param description The description of the emote.
-     * @param usage The usage of the emote.
-     * @param aliases The aliases for usage of the emote.
+     * @param usages The aliases for usage of the emote.
      */
-    public Emote(Texture texture, Font font, String name, String description, String usage, List<String> aliases) {
+    public Emote(Texture texture, BitMapFontProvider font, String description, List<String> usages) {
         this.texture = texture;
         this.font = font;
-        this.name = name;
         this.description = description;
-        this.usage = usage;
-        this.usageAliases = aliases;
+        this.usages = usages;
     }
 
 }

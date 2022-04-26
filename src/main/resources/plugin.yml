@@ -6,3 +6,11 @@ prefix: emotes
 authors: [ Hydrogen ]
 depend: [ Resources ]
 website: hydrogen.exposed
+
+permissions:
+  emotes.use:
+    description: "Allows the player to use emotes."
+    default: true
+  emotes.staff:
+    description: "Allows the player to manage emotes."
+    default: op
