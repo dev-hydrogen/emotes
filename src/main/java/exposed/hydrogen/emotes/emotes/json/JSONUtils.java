@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 
 public class JSONUtils {
-    public static final File LIGHT_JSON = new File(Emotes.DATA_FOLDER + "/" + Emotes.JSON_FILE_NAME);
+    public static final File LIGHT_JSON = new File(Emotes.DATA_FOLDER + File.separator + Emotes.JSON_FILE_NAME);
 
     public static FileReader getReader(File file) {
         try {

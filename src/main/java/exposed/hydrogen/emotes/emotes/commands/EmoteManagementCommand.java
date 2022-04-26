@@ -21,6 +21,8 @@ import static java.util.Arrays.asList;
 
 public class EmoteManagementCommand implements BaseCommand {
 
+    public EmoteManagementCommand() {}
+
     @Override
     public void register(@NotNull CommandManager<CommandSender> manager) {
         final Command.Builder<CommandSender> builder = manager.commandBuilder("emotes");

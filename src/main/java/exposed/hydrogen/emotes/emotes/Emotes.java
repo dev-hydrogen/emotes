@@ -5,6 +5,7 @@ import cloud.commandframework.execution.AsynchronousCommandExecutionCoordinator;
 import cloud.commandframework.paper.PaperCommandManager;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import exposed.hydrogen.emotes.emotes.commands.EmoteManagementCommand;
 import exposed.hydrogen.emotes.emotes.emote.EmoteManager;
 import exposed.hydrogen.emotes.emotes.json.JSONManager;
 import lombok.Getter;
@@ -34,8 +35,9 @@ public final class Emotes extends JavaPlugin {
                 .create();
 
         instance = this;
-        this.saveDefaultConfig();
-        DATA_FOLDER = new File(this.getDataFolder() + File.separator);
+
+        DATA_FOLDER = this.getDataFolder();
+        DATA_FOLDER.mkdirs();
         PNG_FOLDER = new File(DATA_FOLDER + File.separator + "png" + File.separator);
         jsonManager = new JSONManager(GSON);
         try {
@@ -49,10 +51,12 @@ public final class Emotes extends JavaPlugin {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         if(paperCommandManager.queryCapability(CloudBukkitCapabilities.ASYNCHRONOUS_COMPLETION)) {
             paperCommandManager.registerAsynchronousCompletions();
         }
+
+        EmoteManagementCommand emcommand = new EmoteManagementCommand();
+        emcommand.register(paperCommandManager);
     }
 
     @Override

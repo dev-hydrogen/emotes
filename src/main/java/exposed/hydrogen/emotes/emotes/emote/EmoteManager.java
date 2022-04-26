@@ -1,7 +1,9 @@
 package exposed.hydrogen.emotes.emotes.emote;
 
+import exposed.hydrogen.emotes.emotes.Emotes;
 import lombok.Getter;
 
+import java.io.IOException;
 import java.util.LinkedList;
 
 public class EmoteManager {
@@ -13,10 +15,20 @@ public class EmoteManager {
 
     public void addEmote(Emote emote) {
         emotes.add(emote);
+        try {
+            Emotes.getJsonManager().save(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void removeEmote(Emote emote) {
         emotes.remove(emote);
+        try {
+            Emotes.getJsonManager().save(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void removeEmote(String string) {

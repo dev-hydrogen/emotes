@@ -7,6 +7,10 @@ authors: [ Hydrogen ]
 depend: [ Resources ]
 website: hydrogen.exposed
 
+commands:
+
+
+
 permissions:
   emotes.use:
     description: "Allows the player to use emotes."
