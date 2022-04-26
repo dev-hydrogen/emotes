@@ -34,7 +34,8 @@ public final class Emotes extends JavaPlugin {
                 .create();
 
         instance = this;
-        DATA_FOLDER = this.getDataFolder();
+        this.saveDefaultConfig();
+        DATA_FOLDER = new File(this.getDataFolder() + File.separator);
         PNG_FOLDER = new File(DATA_FOLDER + File.separator + "png" + File.separator);
         jsonManager = new JSONManager(GSON);
         try {
