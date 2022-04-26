@@ -57,6 +57,11 @@ public final class Emotes extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        try {
+            jsonManager.save(emoteManager);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         // Plugin shutdown logic
     }
 }
