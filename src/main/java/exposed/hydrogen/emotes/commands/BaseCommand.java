@@ -1,4 +1,4 @@
-package exposed.hydrogen.emotes.emotes.commands;
+package exposed.hydrogen.emotes.commands;
 
 import cloud.commandframework.CommandManager;
 import org.bukkit.command.CommandSender;

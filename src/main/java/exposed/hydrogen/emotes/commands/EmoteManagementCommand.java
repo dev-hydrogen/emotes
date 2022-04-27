@@ -1,20 +1,17 @@
-package exposed.hydrogen.emotes.emotes.commands;
+package exposed.hydrogen.emotes.commands;
 
 import cloud.commandframework.ArgumentDescription;
 import cloud.commandframework.Command;
 import cloud.commandframework.CommandManager;
 import cloud.commandframework.arguments.standard.StringArgument;
 import cloud.commandframework.context.CommandContext;
-import exposed.hydrogen.emotes.emotes.Emotes;
-import exposed.hydrogen.emotes.emotes.emote.Emote;
+import exposed.hydrogen.emotes.Emotes;
+import exposed.hydrogen.emotes.emote.Emote;
 import net.kyori.adventure.key.Key;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
-import team.unnamed.creative.base.Writable;
-import team.unnamed.creative.font.FontProvider;
-import team.unnamed.creative.texture.Texture;
 
-import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -54,14 +51,20 @@ public class EmoteManagementCommand implements BaseCommand {
         String name = context.get("name");
         String description = context.get("description");
         String unicode = context.get("unicode");
-        String[] aliases = ((String)context.get("aliases")).split(" ");
+        String[] aliases = ((String)context.getOptional("aliases").orElse("")).split("");
 
         Key key = Key.key(Emotes.NAMESPACE, name);
 
-        Texture texture = Texture.of(key, Writable.file(new File(Emotes.PNG_FOLDER + file)));
 
-        Emote emote = new Emote(texture, FontProvider.bitMap(key,8,0, List.of(unicode)) ,description, asList(aliases));
+        Emote emote;
+        try {
+            emote = new Emote(file, key, description, asList(aliases), List.of(unicode));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return;
+        }
         Emotes.getEmoteManager().addEmote(emote);
+        Emotes.getEmoteManager().addEmotesToResources();
     }
 
     private void removeEmote(@NotNull CommandContext<CommandSender> context) {

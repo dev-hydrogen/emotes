@@ -1,4 +1,4 @@
-package exposed.hydrogen.emotes.emotes.commands;
+package exposed.hydrogen.emotes.commands;
 
 import lombok.Getter;
 
